@@ -1,0 +1,1255 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, useAnimation, useInView, useScroll, useTransform } from 'framer-motion';
+import { Cpu, Monitor , Eye,ArrowRight, BookOpen, Users, Award, Target, Settings, Network, Camera, Film, Video, Edit3, Clapperboard, TrendingUp, Lightbulb, ChevronRight, Building2, Briefcase, Rocket, Trophy, Sparkles, CheckCircle, GPT, N8N, Runway, SeedDream, LumaAI  } from '../components/Icons';
+
+const HomePage: React.FC = () => {
+  const [displayText, setDisplayText] = useState('');
+  const [textIndex, setTextIndex] = useState(0);
+  const fullText = '机器视觉项目系统';
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 300], [0, -50]);
+
+  // 打字机效果
+  useEffect(() => {
+    if (textIndex < fullText.length) {
+      const timer = setTimeout(() => {
+        setDisplayText(fullText.slice(0, textIndex + 1));
+        setTextIndex(textIndex + 1);
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [textIndex, fullText]);
+
+  // 滚动动画控制
+  useEffect(() => {
+    if (isInView) {
+      controls.start('visible');
+    }
+  }, [controls, isInView]);
+
+  const courseModules = [
+    {
+      title: '一. 机器视觉行业发展',
+      description: '了解机器视觉在工业检测、智能安防等众多领域的应用情况，掌握其从过去到现在的发展脉络和技术演进过程。',
+      icon: Eye,
+      path: '/course/machine-vision-industry',
+      color: 'from-blue-500 to-blue-600',
+      delay: 0.1
+    },
+    {
+      title: '二. 机器视觉的应用范围',
+      description: '掌握机器视觉在工业、农业、安防等多个领域的广泛应用，学习图像识别技术在不同场景下的实际运用方法。',
+      icon: Target,
+      path: '/course/application-scope',
+      color: 'from-indigo-500 to-blue-500',
+      delay: 0.2
+    },
+    {
+      title: '三. 机器视觉系统主要组成',
+      description: '学习机器视觉系统的核心组成部分，掌握光学系统、图像采集、图像处理和控制输出等关键模块的功能和作用。',
+      icon: Settings,
+      path: '/course/system-components',
+      color: 'from-sky-500 to-blue-500',
+      delay: 0.3
+    },
+    {
+      title: '四. 机器视觉在装配环节的应用',
+      description: '学习机器视觉如何助力装配环节，掌握装配前校正、机器人引导、品质监控等关键技术的理论基础和实践应用。',
+      icon: Monitor,
+      path: '/course/assembly-application',
+      color: 'from-cyan-500 to-blue-500',
+      delay: 0.4
+    },
+    {
+      title: '五. 机器视觉在尺寸测量中的应用',
+      description: '学习机器视觉尺寸测量的理论基础和技术原理，掌握像素标定、边缘检测、3D测量等关键技术的实际应用。',
+      icon: Cpu,
+      path: '/course/size-measurement',
+      color: 'from-blue-600 to-indigo-600',
+      delay: 0.5
+    },
+    {
+      title: '六. 机器视觉在缺陷识别中的应用',
+      description: '掌握机器视觉缺陷识别的核心技术，学习图像预处理、特征提取、模式识别等关键技术在产品质量检测中的实际应用。',
+      icon: CheckCircle,
+      path: '/course/defect-detection',
+      color: 'from-slate-500 to-blue-600',
+      delay: 0.6
+    }
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring" as const,
+        stiffness: 100
+      }
+    }
+  };
+
+  const cardHover = {
+    scale: 1.05,
+    rotateX: 5,
+    rotateY: 5,
+    transition: {
+      type: "spring" as const,
+      stiffness: 300,
+      damping: 20
+    }
+  };
+
+  return (
+    <div className="min-h-screen py-12 px-4 overflow-hidden">
+      <div className="max-w-6xl mx-auto">
+        {/* 主标题区域 - 带动画 */}
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          style={{ y }}
+        >
+          <motion.div 
+            className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-6"
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ 
+              type: "spring",
+              stiffness: 260,
+              damping: 20,
+              delay: 0.2 
+            }}
+            whileHover={{ 
+              scale: 1.1, 
+              rotate: 360,
+              transition: { duration: 0.3 }
+            }}
+          >
+            <Eye className="w-10 h-10 text-white" />
+          </motion.div>
+          
+          <motion.h1 className="text-5xl font-bold text-white mb-6 leading-tight">
+            <span className="inline-block">
+              {displayText}
+              <motion.span
+                animate={{ opacity: [0, 1, 0] }}
+                transition={{ repeat: Infinity, duration: 1.2 }}
+                className="text-blue-300"
+              >
+                |
+              </motion.span>
+            </span>
+            <motion.span 
+              className="block text-2xl font-normal text-blue-300 mt-2"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 2, duration: 0.8 }}
+            >
+              智能视觉检测技术教学
+            </motion.span>
+          </motion.h1>
+          
+          <motion.p 
+            className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2.5, duration: 1 }}
+          >
+            通过系统性学习机器视觉技术基础，掌握图像处理、目标识别、缺陷检测等核心知识，
+            培养具备机器视觉系统设计、调试和维护能力的技术人才。
+          </motion.p>
+        </motion.div>
+
+        {/* 新增大标题：为什么要学习这节课 */}
+        <motion.section
+          className="mb-16 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.h1
+            className="text-5xl font-bold text-white mb-4 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-600 bg-clip-text text-transparent"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            为什么要学习这节课
+          </motion.h1>
+          <motion.p
+            className="text-lg text-gray-300 max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            机器视觉是智能制造的核心感知力，掌握它，就得到了未来工厂的入场券
+          </motion.p>
+          <motion.div
+            className="w-32 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto mt-6 rounded-full"
+            initial={{ width: 0 }}
+            whileInView={{ width: 128 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          />
+        </motion.section>
+
+        {/* 第一部分：为什么要关注行业 */}
+        <motion.section
+          className="mb-20"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          {/* 章节标题 */}
+          <motion.div
+            className="flex items-center mb-12"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl mr-6 shadow-lg shadow-blue-500/30">
+              <TrendingUp className="w-8 h-8 text-white" />
+            </div>
+            <div>
+              <h2 className="text-4xl font-bold text-white">为什么要关注行业？</h2>
+              <p className="text-blue-300 mt-2">这是智能制造人才缺口最大的黄金赛道，先入场者赢得更多机会</p>
+            </div>
+          </motion.div>
+
+          {/* 主内容区 - 大卡片 */}
+          <motion.div
+            className="bg-gray-800/50 backdrop-blur-md border border-gray-700/50 rounded-2xl p-12 relative overflow-hidden mb-8"
+            style={{
+              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('${process.env.PUBLIC_URL}/images/为什么要学习这门课/一、为什么要关注行业-1. 原因与现状-主图.jpg')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            {/* 装饰性背景元素 */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-cyan-500/10 rounded-full blur-2xl"></div>
+
+            <div className="relative z-10">
+              {/* 原因与现状 - 全宽展示 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="mb-8"
+              >
+                <h3 className="text-3xl font-bold text-white mb-6">
+                  <span className="text-blue-400">行业现状与机遇</span>
+                </h3>
+
+                {/* 四个核心数据点 */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                  {/* 千亿级市场规模 */}
+                  <motion.div
+                    className="relative overflow-hidden rounded-2xl p-6 border border-blue-500/30 bg-gray-800/50 backdrop-blur-sm"
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('${process.env.PUBLIC_URL}/images/为什么要学习这门课/一、为什么要关注行业-1. 原因与现状-市场爆发.jpg')`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                    }}
+                    whileHover={{ scale: 1.05, borderColor: "rgba(59, 130, 246, 0.5)" }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <TrendingUp className="w-8 h-8 text-blue-400 mb-3" />
+                    <h4 className="text-lg font-bold text-white mb-2">市场爆发</h4>
+                    <p className="text-gray-300 text-sm">
+                      全球3C智能制造正处于快速增长阶段，机器视觉已从手机、笔记本延伸到新能源汽车、半导体和智能家电
+                    </p>
+                  </motion.div>
+
+                  {/* 技术迭代 */}
+                  <motion.div
+                    className="relative overflow-hidden rounded-2xl p-6 border border-blue-500/30 bg-gray-800/50 backdrop-blur-sm"
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('${process.env.PUBLIC_URL}/images/为什么要学习这门课/一、为什么要关注行业-1. 原因与现状-政策驱动.jpg')`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                    }}
+                    whileHover={{ scale: 1.05, borderColor: "rgba(59, 130, 246, 0.5)" }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <Building2 className="w-8 h-8 text-blue-400 mb-3" />
+                    <h4 className="text-lg font-bold text-white mb-2">政策驱动</h4>
+                    <p className="text-gray-300 text-sm">
+                      国家"<span className="font-bold text-blue-300">制造强国2025</span>"和"<span className="font-bold text-blue-300">智能制造示范工厂</span>"战略持续推进，政府出台补贴与扶持政策
+                    </p>
+                  </motion.div>
+
+                  {/* 需求广泛 */}
+                  <motion.div
+                    className="relative overflow-hidden rounded-2xl p-6 border border-blue-500/30 bg-gray-800/50 backdrop-blur-sm"
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('${process.env.PUBLIC_URL}/images/为什么要学习这门课/一、为什么要关注行业-1. 原因与现状-技术突破.jpg')`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                    }}
+                    whileHover={{ scale: 1.05, borderColor: "rgba(59, 130, 246, 0.5)" }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <Film className="w-8 h-8 text-blue-400 mb-3" />
+                    <h4 className="text-lg font-bold text-white mb-2">技术突破</h4>
+                    <p className="text-gray-300 text-sm">
+                      深度学习、边缘计算、3D成像等AI技术不断演进，机器视觉从"能看"走向"<span className="font-bold text-blue-300">能懂、能判断、能决策</span>"
+                    </p>
+                  </motion.div>
+
+                  {/* 职业机遇 */}
+                  <motion.div
+                    className="relative overflow-hidden rounded-2xl p-6 border border-blue-500/30 bg-gray-800/50 backdrop-blur-sm"
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('${process.env.PUBLIC_URL}/images/为什么要学习这门课/一、为什么要关注行业-1. 原因与现状-人才紧缺.jpg')`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                    }}
+                    whileHover={{ scale: 1.05, borderColor: "rgba(59, 130, 246, 0.5)" }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <Network className="w-8 h-8 text-blue-400 mb-3" />
+                    <h4 className="text-lg font-bold text-white mb-2">人才紧缺</h4>
+                    <p className="text-gray-300 text-sm">
+                      机器视觉调试与品质监控岗位<span className="text-blue-300 font-bold">需求缺口超过30%</span>，起薪普遍高于制造业平均水平
+                    </p>
+                  </motion.div>
+                </div>
+              </motion.div>
+
+              {/* 结果导向 - 分为两列 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                <h3 className="text-3xl font-bold text-white mb-6">
+                  <span className="text-cyan-400">发展机遇</span>
+                </h3>
+
+                <div className="grid lg:grid-cols-2 gap-6">
+                  {/* 对企业而言 */}
+                  <motion.div
+                    className="relative overflow-hidden rounded-2xl p-8 border border-blue-500/30 bg-gray-800/50 backdrop-blur-sm"
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('${process.env.PUBLIC_URL}/images/为什么要学习这门课/一、为什么要关注行业-2. 结果导向-对企业来说.jpg')`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                    }}
+                    whileHover={{ scale: 1.02, borderColor: "rgba(59, 130, 246, 0.5)" }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <div className="flex items-center mb-4">
+                      <Target className="w-10 h-10 text-blue-400 mr-3" />
+                      <h4 className="text-2xl font-bold text-blue-400">对企业来说</h4>
+                    </div>
+                    <p className="text-gray-200 text-lg leading-relaxed">
+                    机器视觉能够显著降低人工检测成本，提高检测一致性与生产效率。在3C电子、新能源电池、汽车零部件等高精度制造领域，视觉检测已经成为保障良品率和交付能力的刚需手段。它不仅提升企业的市场竞争力，还帮助企业快速通过国际质量认证，进入更高端的供应链体系。
+                    </p>
+                  </motion.div>
+
+                  {/* 对学生而言 */}
+                  <motion.div
+                    className="relative overflow-hidden rounded-2xl p-8 border border-blue-500/30 bg-gray-800/50 backdrop-blur-sm"
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('${process.env.PUBLIC_URL}/images/为什么要学习这门课/一、为什么要关注行业-2. 结果导向-对学生来说.jpg')`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                    }}
+                    whileHover={{ scale: 1.02, borderColor: "rgba(59, 130, 246, 0.5)" }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <div className="flex items-center mb-4">
+                      <Users className="w-10 h-10 text-blue-400 mr-3" />
+                      <h4 className="text-2xl font-bold text-blue-400">对学生来说</h4>
+                    </div>
+                    <p className="text-gray-200 text-lg leading-relaxed">
+                    机器视觉相关岗位需求旺盛，涵盖研发、调试、质控、售后等多个方向，起薪普遍高于传统制造岗位。毕业生通过掌握调试与监控技能，可以快速实现从"操作型人才"到"系统型人才"的成长路径。随着企业对自动化水平的要求不断提高，职业发展空间广阔，未来可晋升至项目负责人、质量经理甚至研发骨干，是进入智能制造的最佳切入点。
+                    </p>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </motion.section>
+
+        {/* 第二部分：为什么要分清企业类型 */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mb-20"
+        >
+          {/* 章节标题 */}
+          <motion.div
+            className="flex items-center mb-12"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl mr-6 shadow-lg shadow-blue-500/30">
+              <TrendingUp className="w-8 h-8 text-white" />
+            </div>
+            <div>
+              <h2 className="text-4xl font-bold text-white">为什么要分清企业类型？</h2>
+              <p className="text-blue-300 mt-2">不同企业在产业链位置不同，决定了岗位技能要求和职业发展路径</p>
+            </div>
+          </motion.div>
+
+          {/* 主内容区 - 阶梯式企业类型布局 */}
+          <div className="relative max-w-5xl mx-auto">
+            <div className="space-y-8">
+              {/* 上游企业 */}
+              <motion.div
+                className="relative max-w-3xl mr-auto ml-0"
+                initial={{ opacity: 0, x: -100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.1, duration: 0.6 }}
+              >
+                <div className="flex items-center gap-6">
+                  {/* 左侧大图标 */}
+                  <div className="flex-shrink-0">
+                    <motion.div
+                      className="w-24 h-24 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-3xl flex items-center justify-center shadow-2xl shadow-blue-500/20"
+                      whileHover={{ rotate: 5, scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <Building2 className="w-12 h-12 text-white" />
+                    </motion.div>
+                  </div>
+
+                  {/* 右侧内容卡片 */}
+                  <motion.div
+                    className="flex-1 relative overflow-hidden rounded-3xl p-8 border border-blue-500/30 bg-gray-800/50 backdrop-blur-sm"
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('${process.env.PUBLIC_URL}/images/为什么要学习这门课/二、为什么要分清企业类型？-上游企业.jpg')`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                    }}
+                    whileHover={{ scale: 1.02, x: 10 }}
+                  >
+                    <div className="absolute top-0 right-0 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl"></div>
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-3xl font-bold text-blue-400">上游企业</h3>
+                        <span className="text-blue-400/60 text-sm font-semibold">核心器件</span>
+                      </div>
+                      <p className="text-gray-300 text-base mb-6">主要提供机器视觉系统的核心"原材料"，包括工业相机、镜头、光源、图像采集卡、工业计算机等硬件设备，以及底层算法软件。这些企业决定了视觉系统的性能上限</p>
+
+                      <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                          <span className="text-gray-400 text-sm">工业相机厂商</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                          <span className="text-gray-400 text-sm">光源与镜头供应商</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                          <span className="text-gray-400 text-sm">图像采集卡厂商</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                          <span className="text-gray-400 text-sm">算法软件开发商</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                          <span className="text-gray-400 text-sm">图像传感器制造商</span>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* 向下的流动箭头 */}
+                <div className="flex justify-center mt-6">
+                  <motion.div
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ repeat: Infinity, duration: 2 }}
+                  >
+                    <ChevronRight className="w-10 h-10 text-blue-400/50 rotate-90" />
+                  </motion.div>
+                </div>
+              </motion.div>
+
+              {/* 中游企业 */}
+              <motion.div
+                className="relative max-w-3xl mx-auto"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+              >
+                <div className="flex items-center gap-6">
+                  {/* 左侧大图标 */}
+                  <div className="flex-shrink-0">
+                    <motion.div
+                      className="w-24 h-24 bg-gradient-to-br from-[color:var(--gold-cinema)] to-[color:var(--gold-warm)] rounded-3xl flex items-center justify-center shadow-2xl"
+                      whileHover={{ rotate: -5, scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <Camera className="w-12 h-12 text-[color:var(--bg-cinema-dark)]" />
+                    </motion.div>
+                  </div>
+
+                  {/* 右侧内容卡片 */}
+                  <motion.div
+                    className="flex-1 relative overflow-hidden rounded-3xl p-8 border border-[color:var(--gold-cinema)]/30"
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('${process.env.PUBLIC_URL}/images/为什么要学习这门课/二、为什么要分清企业类型？-中游企业.jpg')`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                    }}
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <div className="absolute top-0 right-0 w-40 h-40 bg-[color:var(--gold-cinema)]/20 rounded-full blur-3xl"></div>
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-3xl font-bold text-[color:var(--gold-cinema)]">中游企业</h3>
+                        <span className="text-[color:var(--gold-cinema)]/60 text-sm font-semibold">系统集成</span>
+                      </div>
+                      <p className="text-[color:var(--text-cinema-secondary)] text-base mb-6">负责将上游的硬件与算法资源集成为可落地的检测系统，包括硬件装调、光学方案设计、算法部署与生产线集成。中游企业是技术转化为生产力的关键环节，也是岗位最集中的领域</p>
+
+                      <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-[color:var(--gold-cinema)] rounded-full animate-pulse"></div>
+                          <span className="text-[color:var(--text-cinema-muted)] text-sm">机器视觉系统集成公司</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-[color:var(--gold-cinema)] rounded-full animate-pulse"></div>
+                          <span className="text-[color:var(--text-cinema-muted)] text-sm">工业自动化设备制造商</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-[color:var(--gold-cinema)] rounded-full animate-pulse"></div>
+                          <span className="text-[color:var(--text-cinema-muted)] text-sm">产线自动化工程公司</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-[color:var(--gold-cinema)] rounded-full animate-pulse"></div>
+                          <span className="text-[color:var(--text-cinema-muted)] text-sm">机器人系统开发商</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-[color:var(--gold-cinema)] rounded-full animate-pulse"></div>
+                          <span className="text-[color:var(--text-cinema-muted)] text-sm">工业软件解决方案商</span>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* 向下的流动箭头 */}
+                <div className="flex justify-center mt-6">
+                  <motion.div
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ repeat: Infinity, duration: 2, delay: 0.5 }}
+                  >
+                    <ChevronRight className="w-10 h-10 text-[color:var(--gold-cinema)]/50 rotate-90" />
+                  </motion.div>
+                </div>
+              </motion.div>
+
+              {/* 下游企业 */}
+              <motion.div
+                className="relative max-w-3xl ml-auto mr-0"
+                initial={{ opacity: 0, x: 100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              >
+                <div className="flex items-center gap-6">
+                  {/* 左侧大图标 */}
+                  <div className="flex-shrink-0">
+                    <motion.div
+                      className="w-24 h-24 bg-gradient-to-br from-[color:var(--gold-cinema)] to-[color:var(--gold-warm)] rounded-3xl flex items-center justify-center shadow-2xl"
+                      whileHover={{ rotate: 5, scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <Users className="w-12 h-12 text-[color:var(--bg-cinema-dark)]" />
+                    </motion.div>
+                  </div>
+
+                  {/* 右侧内容卡片 */}
+                  <motion.div
+                    className="flex-1 relative overflow-hidden rounded-3xl p-8 border border-[color:var(--gold-cinema)]/30"
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('${process.env.PUBLIC_URL}/images/为什么要学习这门课/二、为什么要分清企业类型？-下游企业.jpg')`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                    }}
+                    whileHover={{ scale: 1.02, x: -10 }}
+                  >
+                    <div className="absolute top-0 right-0 w-40 h-40 bg-[color:var(--gold-cinema)]/20 rounded-full blur-3xl"></div>
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-3xl font-bold text-[color:var(--gold-cinema)]">下游企业</h3>
+                        <span className="text-[color:var(--gold-cinema)]/60 text-sm font-semibold">具体应用</span>
+                      </div>
+                      <p className="text-[color:var(--text-cinema-secondary)] text-base mb-6">涵盖具体应用行业的落地与推广，如电子3C、汽车、新能源、医药、食品、物流等领域。下游企业将视觉系统投入实际生产，直接决定其商业价值与市场影响力</p>
+
+                      <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-[color:var(--gold-cinema)] rounded-full animate-pulse"></div>
+                          <span className="text-[color:var(--text-cinema-muted)] text-sm">电子3C制造企业</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-[color:var(--gold-cinema)] rounded-full animate-pulse"></div>
+                          <span className="text-[color:var(--text-cinema-muted)] text-sm">汽车与新能源企业</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-[color:var(--gold-cinema)] rounded-full animate-pulse"></div>
+                          <span className="text-[color:var(--text-cinema-muted)] text-sm">医药与食品加工企业</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-[color:var(--gold-cinema)] rounded-full animate-pulse"></div>
+                          <span className="text-[color:var(--text-cinema-muted)] text-sm">物流分拣与仓储公司</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-[color:var(--gold-cinema)] rounded-full animate-pulse"></div>
+                          <span className="text-[color:var(--text-cinema-muted)] text-sm">包装与检测设备使用企业</span>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+
+          <motion.div
+            className="mt-8 p-6 bg-gradient-to-r from-[color:var(--gold-cinema)]/10 to-[color:var(--gold-warm)]/10 rounded-2xl border border-[color:var(--gold-cinema)]/30"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            <p className="text-[color:var(--gold-cinema)] text-lg font-semibold text-center">
+              了解产业链各环节，找准自己的定位，选择最适合的发展路径
+            </p>
+          </motion.div>
+        </motion.section>
+
+        {/* 第三部分：关于岗位你该知道的是 */}
+        <motion.section
+          className="mb-20"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          {/* 章节标题 */}
+          <motion.div
+            className="flex items-center mb-12"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[color:var(--gold-cinema)] to-[color:var(--gold-warm)] rounded-2xl mr-6">
+              <Briefcase className="w-8 h-8 text-[color:var(--bg-cinema-dark)]" />
+            </div>
+            <div>
+              <h2 className="text-4xl font-bold text-white">关于岗位你该知道的是</h2>
+              <p className="text-[color:var(--gold-warm)] mt-2">有哪些岗位？普遍要求与待遇如何？</p>
+            </div>
+          </motion.div>
+
+          {/* 岗位分类卡片 */}
+          <div className="grid lg:grid-cols-4 gap-6 mb-8">
+            {/* 前期策划 */}
+            <motion.div
+              className="relative overflow-hidden rounded-3xl p-6 border border-[color:var(--gold-cinema)]/30"
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('${process.env.PUBLIC_URL}/images/为什么要学习这门课/三、关于岗位你该知道的是-（一）有哪些岗位？-产品研发与设计类岗位.jpg')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="absolute top-0 right-0 w-24 h-24 bg-[color:var(--gold-cinema)]/20 rounded-full blur-2xl"></div>
+              <div className="relative z-10">
+                <div className="flex items-center mb-4">
+                  <div className="w-10 h-10 bg-[color:var(--gold-cinema)] rounded-xl flex items-center justify-center">
+                    <Lightbulb className="w-5 h-5 text-[color:var(--bg-cinema-dark)]" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[color:var(--gold-cinema)] ml-3">产品研发与设计类</h3>
+                </div>
+                <p className="text-[color:var(--text-cinema-muted)] text-sm mb-4">负责产品从创意构想到实际设计落地的全过程，包括外观造型、结构方案和功能优化</p>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <ChevronRight className="w-4 h-4 text-[color:var(--gold-cinema)]" />
+                    <span className="text-[color:var(--text-cinema-secondary)] text-sm">工业产品设计师</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <ChevronRight className="w-4 h-4 text-[color:var(--gold-cinema)]" />
+                    <span className="text-[color:var(--text-cinema-secondary)] text-sm">产品外观设计师</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <ChevronRight className="w-4 h-4 text-[color:var(--gold-cinema)]" />
+                    <span className="text-[color:var(--text-cinema-secondary)] text-sm">产品结构设计师</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* 中期拍摄 */}
+            <motion.div
+              className="relative overflow-hidden rounded-3xl p-6 border border-[color:var(--gold-cinema)]/30"
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('${process.env.PUBLIC_URL}/images/为什么要学习这门课/三、关于岗位你该知道的是-（一）有哪些岗位？-制造加工类岗位.jpg')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="absolute top-0 right-0 w-24 h-24 bg-[color:var(--gold-cinema)]/20 rounded-full blur-2xl"></div>
+              <div className="relative z-10">
+                <div className="flex items-center mb-4">
+                  <div className="w-10 h-10 bg-[color:var(--gold-cinema)] rounded-xl flex items-center justify-center">
+                    <Camera className="w-5 h-5 text-[color:var(--bg-cinema-dark)]" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[color:var(--gold-cinema)] ml-3">制造加工类</h3>
+                </div>
+                <p className="text-[color:var(--text-cinema-muted)] text-sm mb-4">聚焦零部件与整机的加工工艺，涉及钣金、焊接、机加工等多种工艺流程</p>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <ChevronRight className="w-4 h-4 text-[color:var(--gold-cinema)]" />
+                    <span className="text-[color:var(--text-cinema-secondary)] text-sm">机械工艺工程师</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <ChevronRight className="w-4 h-4 text-[color:var(--gold-cinema)]" />
+                    <span className="text-[color:var(--text-cinema-secondary)] text-sm">钣金工程师</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <ChevronRight className="w-4 h-4 text-[color:var(--gold-cinema)]" />
+                    <span className="text-[color:var(--text-cinema-secondary)] text-sm">焊接工艺工程师</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <ChevronRight className="w-4 h-4 text-[color:var(--gold-cinema)]" />
+                    <span className="text-[color:var(--text-cinema-secondary)] text-sm">机加工工艺工程师</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <ChevronRight className="w-4 h-4 text-[color:var(--gold-cinema)]" />
+                    <span className="text-[color:var(--text-cinema-secondary)] text-sm">电火花加工工程师</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* 后期制作 */}
+            <motion.div
+              className="relative overflow-hidden rounded-3xl p-6 border border-[color:var(--gold-cinema)]/30"
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('${process.env.PUBLIC_URL}/images/为什么要学习这门课/三、关于岗位你该知道的是-（一）有哪些岗位？-调试类岗位.jpg')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="absolute top-0 right-0 w-24 h-24 bg-[color:var(--gold-cinema)]/20 rounded-full blur-2xl"></div>
+              <div className="relative z-10">
+                <div className="flex items-center mb-4">
+                  <div className="w-10 h-10 bg-[color:var(--gold-cinema)] rounded-xl flex items-center justify-center">
+                    <Edit3 className="w-5 h-5 text-[color:var(--bg-cinema-dark)]" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[color:var(--gold-cinema)] ml-3">调试类</h3>
+                </div>
+                <p className="text-[color:var(--text-cinema-muted)] text-sm mb-4">承担设备、系统在安装后的功能验证与性能优化，确保稳定高效运行</p>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <ChevronRight className="w-4 h-4 text-[color:var(--gold-cinema)]" />
+                    <span className="text-[color:var(--text-cinema-secondary)] text-sm">机器视觉调试工程师</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <ChevronRight className="w-4 h-4 text-[color:var(--gold-cinema)]" />
+                    <span className="text-[color:var(--text-cinema-secondary)] text-sm">机器视觉调试技术员</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* 宣传运营 */}
+            <motion.div
+              className="relative overflow-hidden rounded-3xl p-6 border border-[color:var(--gold-cinema)]/30"
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('${process.env.PUBLIC_URL}/images/为什么要学习这门课/三、关于岗位你该知道的是-（一）有哪些岗位？-质检类岗位.jpg')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="absolute top-0 right-0 w-24 h-24 bg-[color:var(--gold-cinema)]/20 rounded-full blur-2xl"></div>
+              <div className="relative z-10">
+                <div className="flex items-center mb-4">
+                  <div className="w-10 h-10 bg-[color:var(--gold-cinema)] rounded-xl flex items-center justify-center">
+                    <Users className="w-5 h-5 text-[color:var(--bg-cinema-dark)]" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[color:var(--gold-cinema)] ml-3">质检类</h3>
+                </div>
+                <p className="text-[color:var(--text-cinema-muted)] text-sm mb-4">负责对原材料、零部件及成品进行质量检测与安全验证</p>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <ChevronRight className="w-4 h-4 text-[color:var(--gold-cinema)]" />
+                    <span className="text-[color:var(--text-cinema-secondary)] text-sm">产品测试工程师</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <ChevronRight className="w-4 h-4 text-[color:var(--gold-cinema)]" />
+                    <span className="text-[color:var(--text-cinema-secondary)] text-sm">产品测试技术员</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <ChevronRight className="w-4 h-4 text-[color:var(--gold-cinema)]" />
+                    <span className="text-[color:var(--text-cinema-secondary)] text-sm">安规测试员</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* 普遍要求与待遇 */}
+          <motion.div
+            className="glass-cinema p-8 relative overflow-hidden"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <div className="absolute top-0 right-0 w-48 h-48 bg-[color:var(--gold-cinema)]/10 rounded-full blur-3xl"></div>
+            <div className="relative z-10">
+              <h3 className="text-2xl font-bold text-[color:var(--gold-cinema)] mb-6 text-center">行业要求与待遇</h3>
+
+              <div className="grid md:grid-cols-4 gap-6">
+                <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-[color:var(--gold-cinema)]/20 to-[color:var(--gold-warm)]/20 border border-[color:var(--gold-cinema)]/30">
+                  <div className="text-2xl font-bold text-[color:var(--gold-cinema)] mb-2">技术/经验 &gt; 学历</div>
+                  <p className="text-[color:var(--text-cinema-muted)] text-sm">更看重动手能力与调试经验，而非学历背景</p>
+                </div>
+
+                <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-[color:var(--gold-cinema)]/20 to-[color:var(--gold-warm)]/20 border border-[color:var(--gold-cinema)]/30">
+                  <div className="text-2xl font-bold text-[color:var(--gold-cinema)] mb-2">现场实操</div>
+                  <p className="text-[color:var(--text-cinema-muted)] text-sm">需现场实操、跨部门协作，部分岗位涉及出差与轮班</p>
+                </div>
+
+                <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-[color:var(--gold-cinema)]/20 to-[color:var(--gold-warm)]/20 border border-[color:var(--gold-cinema)]/30">
+                  <div className="text-2xl font-bold text-[color:var(--gold-cinema)] mb-2">成长路径快</div>
+                  <p className="text-[color:var(--text-cinema-muted)] text-sm">从操作型人才到系统型人才，职业发展空间广阔</p>
+                </div>
+
+                <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-[color:var(--gold-cinema)]/20 to-[color:var(--gold-warm)]/20 border border-[color:var(--gold-cinema)]/30">
+                  <div className="text-2xl font-bold text-[color:var(--gold-cinema)] mb-2">薪资6K–10K</div>
+                  <p className="text-[color:var(--text-cinema-muted)] text-sm">调试工程师起薪6K–8K，算法岗位10K+</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.section>
+
+        {/* 第四部分：通过学习，你能学到什么 */}
+        <motion.section
+          className="mb-20"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          {/* 章节标题 */}
+          <motion.div
+            className="flex items-center mb-12"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[color:var(--gold-cinema)] to-[color:var(--gold-warm)] rounded-2xl mr-6">
+              <Sparkles className="w-8 h-8 text-white" />
+            </div>
+            <div>
+              <h2 className="text-4xl font-bold text-white">通过学习，你能学到什么？</h2>
+              <p className="text-[color:var(--gold-warm)] mt-2">不只是学了就能用的实战技巧</p>
+            </div>
+          </motion.div>
+
+          {/* 主内容区 - 课程大纲和技能 */}
+          <div className="grid lg:grid-cols-2 gap-8 mb-8">
+            {/* 课程核心内容卡片 */}
+            <motion.div
+              className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[color:var(--gold-cinema)]/10 to-cyan-600/10 p-8 border border-[color:var(--gold-cinema)]/30"
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('${process.env.PUBLIC_URL}/images/为什么要学习这门课/四、通过学习，你能学到什么？-（一）单元课程目录.jpeg')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[color:var(--gold-cinema)]/20 rounded-full blur-2xl"></div>
+              <div className="relative z-10">
+                <div className="flex items-center mb-6">
+                  <div className="w-3 h-12 bg-[color:var(--gold-cinema)] rounded-full mr-4"></div>
+                  <h3 className="text-2xl font-bold text-[color:var(--gold-cinema)]">核心课程内容</h3>
+                </div>
+
+                <div className="space-y-4">
+                  {/* 硬核启蒙 */}
+                  <div className="bg-white/5 rounded-xl p-4 backdrop-blur-sm">
+                    <span className="text-[color:var(--gold-cinema)] font-semibold text-base">硬核启蒙</span>
+                    <div className="text-[color:var(--text-cinema-muted)] text-sm mt-2 space-y-1">
+                      <p>• 打开机器视觉世界大门</p>
+                      <p>• 半导体核心演进史：晶体管到集成电路</p>
+                    </div>
+                  </div>
+
+                  {/* 光学与成像 */}
+                  <div className="bg-white/5 rounded-xl p-4 backdrop-blur-sm">
+                    <span className="text-[color:var(--gold-cinema)] font-semibold text-base">光学与成像</span>
+                    <div className="text-[color:var(--text-cinema-muted)] text-sm mt-2 space-y-1">
+                      <p>• 一次就选对！光学组件选型与视场计算</p>
+                      <p>• 照明不翻车：光源布置技巧与照度维护</p>
+                      <p>• 精准到像素！相机标定与周期校准</p>
+                    </div>
+                  </div>
+
+                  {/* 高速采集与实时优化 */}
+                  <div className="bg-white/5 rounded-xl p-4 backdrop-blur-sm">
+                    <span className="text-[color:var(--gold-cinema)] font-semibold text-base">高速采集与实时优化</span>
+                    <div className="text-[color:var(--text-cinema-muted)] text-sm mt-2 space-y-1">
+                      <p>• 每秒上千帧！高速线扫同步调试</p>
+                      <p>• 图像不卡顿：实时管线与缓存优化</p>
+                    </div>
+                  </div>
+
+                  {/* 缺陷检测与质量控制 */}
+                  <div className="bg-white/5 rounded-xl p-4 backdrop-blur-sm">
+                    <span className="text-[color:var(--gold-cinema)] font-semibold text-base">缺陷检测与质量控制</span>
+                    <div className="text-[color:var(--text-cinema-muted)] text-sm mt-2 space-y-1">
+                      <p>• 缺陷零遗漏：算法验证与阈值调优</p>
+                      <p>• 数据说话：在线SPC统计与良率监控</p>
+                    </div>
+                  </div>
+
+                  {/* 运维与产线保障 */}
+                  <div className="bg-white/5 rounded-xl p-4 backdrop-blur-sm">
+                    <span className="text-[color:var(--gold-cinema)] font-semibold text-base">运维与产线保障</span>
+                    <div className="text-[color:var(--text-cinema-muted)] text-sm mt-2 space-y-1">
+                      <p>• 设备长寿秘籍：镜头清洁与部件保养</p>
+                      <p>• 停机也不怕：故障排查与换线快速复位</p>
+                      <p>• 最终冲刺：通电率与产能爬坡</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* 实战技能卡片 */}
+            <motion.div
+              className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[color:var(--gold-warm)]/10 to-[color:var(--gold-cinema)]/10 p-8 border border-[color:var(--gold-warm)]/30"
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('${process.env.PUBLIC_URL}/images/为什么要学习这门课/四、通过学习，你能学到什么？-（二）本节课课程内容.jpeg')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[color:var(--gold-warm)]/20 rounded-full blur-2xl"></div>
+              <div className="relative z-10">
+                <div className="flex items-center mb-6">
+                  <div className="w-3 h-12 bg-[color:var(--gold-warm)] rounded-full mr-4"></div>
+                  <h3 className="text-2xl font-bold text-[color:var(--gold-warm)]">本单元课程重点</h3>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="bg-white/5 rounded-xl p-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-3 mb-2">
+                      <TrendingUp className="w-5 h-5 text-[color:var(--gold-warm)]" />
+                      <span className="text-[color:var(--gold-warm)] font-semibold text-base">行业背景与市场规模分析</span>
+                    </div>
+                    <p className="text-[color:var(--text-cinema-muted)] text-sm">深入了解机器视觉产业的发展现状、市场容量和技术趋势</p>
+                  </div>
+
+                  <div className="bg-white/5 rounded-xl p-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Building2 className="w-5 h-5 text-[color:var(--gold-warm)]" />
+                      <span className="text-[color:var(--gold-warm)] font-semibold text-base">视觉系统架构与关键组件</span>
+                    </div>
+                    <p className="text-[color:var(--text-cinema-muted)] text-sm">掌握相机、镜头、光源、采集卡等核心硬件的选型与配置</p>
+                  </div>
+
+                  <div className="bg-white/5 rounded-xl p-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Award className="w-5 h-5 text-[color:var(--gold-warm)]" />
+                      <span className="text-[color:var(--gold-warm)] font-semibold text-base">产线集成与实战调试技巧</span>
+                    </div>
+                    <p className="text-[color:var(--text-cinema-muted)] text-sm">从实际案例学习系统调试、参数优化和故障排查方法</p>
+                  </div>
+
+                  <div className="bg-white/5 rounded-xl p-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Sparkles className="w-5 h-5 text-[color:var(--gold-warm)]" />
+                      <span className="text-[color:var(--gold-warm)] font-semibold text-base">AI算法在视觉检测中的应用</span>
+                    </div>
+                    <p className="text-[color:var(--text-cinema-muted)] text-sm">学习深度学习、OpenCV、HALCON等工具在缺陷检测中的实践</p>
+                  </div>
+
+                  <div className="bg-white/5 rounded-xl p-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Users className="w-5 h-5 text-[color:var(--gold-warm)]" />
+                      <span className="text-[color:var(--gold-warm)] font-semibold text-base">职业技能提升与发展规划</span>
+                    </div>
+                    <p className="text-[color:var(--text-cinema-muted)] text-sm">从调试技术员到系统工程师的成长路径和能力要求</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* 案例分析和工具应用 */}
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* 涉及到的大型案例 */}
+            <motion.div
+              className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[color:var(--gold-cinema)]/10 to-[color:var(--gold-warm)]/10 p-8 border border-[color:var(--gold-cinema)]/30"
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('${process.env.PUBLIC_URL}/images/为什么要学习这门课/四、通过学习，你能学到什么？-（三）涉及到的大型案例.jpeg')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[color:var(--gold-cinema)]/20 rounded-full blur-2xl"></div>
+              <div className="relative z-10">
+                <div className="flex items-center mb-6">
+                  <div className="w-3 h-12 bg-[color:var(--gold-cinema)] rounded-full mr-4"></div>
+                  <h3 className="text-2xl font-bold text-[color:var(--gold-cinema)]">涉及到的大型案例</h3>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="bg-white/5 rounded-xl p-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Trophy className="w-5 h-5 text-[color:var(--gold-cinema)]" />
+                      <span className="text-[color:var(--gold-cinema)] font-semibold text-base">3D AI光学组件一体化调试</span>
+                    </div>
+                    <p className="text-[color:var(--text-cinema-muted)] text-sm">基于深度学习的3D视觉系统集成与现场调试实战</p>
+                  </div>
+
+                  <div className="bg-white/5 rounded-xl p-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Trophy className="w-5 h-5 text-[color:var(--gold-cinema)]" />
+                      <span className="text-[color:var(--gold-cinema)] font-semibold text-base">IC封装外观检测产线落地实训</span>
+                    </div>
+                    <p className="text-[color:var(--text-cinema-muted)] text-sm">半导体封装产线的视觉检测系统部署与优化</p>
+                  </div>
+
+                  <div className="bg-white/5 rounded-xl p-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Trophy className="w-5 h-5 text-[color:var(--gold-cinema)]" />
+                      <span className="text-[color:var(--gold-cinema)] font-semibold text-base">高速线阵相机光源配置与缺陷算法优化</span>
+                    </div>
+                    <p className="text-[color:var(--text-cinema-muted)] text-sm">线扫描相机在高速产线的应用与参数调优技巧</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* 涉及到 AI 工具教学 */}
+            <motion.div
+              className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[color:var(--gold-cinema)]/10 to-[color:var(--gold-warm)]/10 p-8 border border-[color:var(--gold-cinema)]/30"
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('${process.env.PUBLIC_URL}/images/为什么要学习这门课/四、通过学习，你能学到什么？-（四）涉及到 AI 工具教学.jpeg')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[color:var(--gold-cinema)]/20 rounded-full blur-2xl"></div>
+              <div className="relative z-10">
+                <div className="flex items-center mb-6">
+                  <div className="w-3 h-12 bg-[color:var(--gold-cinema)] rounded-full mr-4"></div>
+                  <h3 className="text-2xl font-bold text-[color:var(--gold-cinema)]">涉及到 AI 工具教学</h3>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="bg-white/5 rounded-xl p-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-2">
+                      <GPT className="w-5 h-5 text-[color:var(--gold-cinema)]" />
+                      <span className="text-[color:var(--gold-cinema)] font-semibold text-base">ChatGPT</span>
+                    </div>
+                    <p className="text-[color:var(--text-cinema-secondary)] text-sm mt-1">自动化生成检测报告、调试参数记录和技术文档，提升文档化效率</p>
+                  </div>
+                  <div className="bg-white/5 rounded-xl p-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-2">
+                      <N8N className="w-5 h-5 text-[color:var(--gold-cinema)]" />
+                      <span className="text-[color:var(--gold-cinema)] font-semibold text-base">N8N</span>
+                    </div>
+                    <p className="text-[color:var(--text-cinema-secondary)] text-sm mt-1">低代码自动化工作流工具，实现检测数据采集、参数优化任务分发</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        {/* 第五部分：岗位晋升路径 */}
+        <motion.section className="mb-20" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <motion.div
+            className="bg-gradient-to-r from-[color:var(--gold-cinema)]/10 to-[color:var(--gold-warm)]/10 rounded-3xl p-8 border border-[color:var(--gold-cinema)]/20"
+            whileHover={{ scale: 1.01 }}
+          >
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <Trophy className="w-10 h-10 text-[color:var(--gold-cinema)]" />
+              <h2 className="text-3xl font-bold text-white">岗位晋升路径</h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <motion.div
+                className="bg-gradient-to-br from-[color:var(--gold-cinema)]/10 to-cyan-500/10 rounded-2xl p-6 border border-[color:var(--gold-cinema)]/20 text-center"
+                whileHover={{ y: -5 }}
+              >
+                <div className="text-2xl font-bold text-[color:var(--gold-cinema)] mb-2">初级职位</div>
+                <div className="text-3xl font-bold text-white mb-4">6K-8K</div>
+                <div className="text-[color:var(--gold-warm)] text-sm">
+                  <div>视觉调试技术员</div>
+                  <div>产品测试技术员</div>
+                  <div>设备维护技术员</div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="bg-gradient-to-br from-[color:var(--gold-warm)]/10 to-[color:var(--gold-vintage)]/10 rounded-2xl p-6 border border-[color:var(--gold-warm)]/20 text-center"
+                whileHover={{ y: -5, scale: 1.05 }}
+              >
+                <div className="text-2xl font-bold text-[color:var(--gold-warm)] mb-2">中级职位</div>
+                <div className="text-3xl font-bold text-white mb-4">10K-15K</div>
+                <div className="text-[color:var(--gold-vintage)] text-sm">
+                  <div>机器视觉工程师</div>
+                  <div>算法调试工程师</div>
+                  <div>系统集成工程师</div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="bg-gradient-to-br from-[color:var(--gold-cinema)]/10 to-[color:var(--gold-vintage)]/10 rounded-2xl p-6 border border-[color:var(--gold-cinema)]/20 text-center"
+                whileHover={{ y: -5 }}
+              >
+                <div className="text-2xl font-bold text-[color:var(--gold-cinema)] mb-2">高级职位</div>
+                <div className="text-3xl font-bold text-white mb-4">15K+</div>
+                <div className="text-[color:var(--gold-warm)] text-sm">
+                  <div>视觉技术专家</div>
+                  <div>项目负责人</div>
+                  <div>质量经理/研发骨干</div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </motion.section>
+
+        {/* 学习路径指引 - 弹簧动画 */}
+        <motion.div 
+          className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 backdrop-blur-md rounded-2xl p-12 border border-white/20 text-center max-w-4xl mx-auto relative overflow-hidden"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ 
+            type: "spring", 
+            stiffness: 100, 
+            damping: 15,
+            delay: 0.2 
+          }}
+          viewport={{ once: true }}
+          whileHover={{ 
+            boxShadow: "0 30px 60px -12px rgba(0, 0, 0, 0.6)",
+            borderColor: "rgba(255, 255, 255, 0.3)"
+          }}
+        >
+          {/* 背景动画粒子效果 */}
+          <motion.div
+            className="absolute inset-0 opacity-30"
+            animate={{ 
+              background: [
+                "radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)",
+                "radial-gradient(circle at 80% 50%, rgba(168, 85, 247, 0.3) 0%, transparent 50%)",
+                "radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)",
+                "radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)"
+              ]
+            }}
+            transition={{ duration: 8, repeat: Infinity }}
+          />
+          
+          <motion.h2 
+            className="text-3xl font-bold text-white mb-6 relative z-10"
+            initial={{ y: 30, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            开始你的机器视觉学习之旅
+          </motion.h2>
+          
+          <motion.p 
+            className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto relative z-10"
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            按照模块顺序学习，从行业认知到缺陷识别，循序渐进掌握机器视觉技术精髓。
+          </motion.p>
+          
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-4 justify-center relative z-10"
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              whileHover={{ scale: 1.05, boxShadow: "0 15px 30px rgba(0,0,0,0.4)" }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link
+                to="/objectives"
+                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg inline-block"
+              >
+                查看学习目标
+              </Link>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+              </div>
+            </div>
+  );
+  };
+  
+export default HomePage; 
