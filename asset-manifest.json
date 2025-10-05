@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/visual-education-web/static/css/main.c4b21014.css",
+    "main.js": "/visual-education-web/static/js/main.ec06f0ae.js",
+    "index.html": "/visual-education-web/index.html",
+    "main.c4b21014.css.map": "/visual-education-web/static/css/main.c4b21014.css.map",
+    "main.ec06f0ae.js.map": "/visual-education-web/static/js/main.ec06f0ae.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c4b21014.css",
+    "static/js/main.ec06f0ae.js"
+  ]
+}
