@@ -118,7 +118,7 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen py-12 px-4 overflow-hidden">
+    <div className="min-h-screen py-12 px-4 overflow-visible">
       <div className="max-w-6xl mx-auto">
         {/* 主标题区域 - 带动画 */}
         <motion.div 
