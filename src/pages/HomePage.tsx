@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useAnimation, useInView, useScroll, useTransform } from 'framer-motion';
 import { Cpu, Monitor , Eye,ArrowRight, BookOpen, Users, Award, Target, Settings, Network, Camera, Film, Video, Edit3, Clapperboard, TrendingUp, Lightbulb, ChevronRight, Building2, Briefcase, Rocket, Trophy, Sparkles, CheckCircle, GPT, N8N, Runway, Midjourney, OpenCV, PyTorch, TensorFlow, LumaAI  } from '../components/Icons';
+import DigitalAvatarPlayer from '../components/DigitalAvatarPlayer';
 
 const HomePage: React.FC = () => {
   const [displayText, setDisplayText] = useState('');
@@ -211,6 +212,12 @@ const HomePage: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.6 }}
           />
+
+          {/* 数字人播放器1 - 为什么要学习这节课 */}
+          <DigitalAvatarPlayer
+            videoUrl="https://ddcz-1315997005.cos.ap-nanjing.myqcloud.com/static/video/web_teach/recuYqXCNXGzSB.mov"
+            position={{ top: 0, right: '-16rem' }}
+          />
         </motion.section>
 
         {/* 第一部分：为什么要关注行业 */}
@@ -394,6 +401,12 @@ const HomePage: React.FC = () => {
               </motion.div>
             </div>
           </motion.div>
+
+          {/* 数字人播放器2 - 为什么要关注行业 */}
+          <DigitalAvatarPlayer
+            videoUrl="https://ddcz-1315997005.cos.ap-nanjing.myqcloud.com/static/video/web_teach/recuYIOstJNK8p.mov"
+            position={{ top: 380, right: '-16rem' }}
+          />
         </motion.section>
 
         {/* 第二部分：为什么要分清企业类型 */}
@@ -646,6 +659,12 @@ const HomePage: React.FC = () => {
               了解产业链各环节，找准自己的定位，选择最适合的发展路径
             </p>
           </motion.div>
+
+          {/* 数字人播放器3 - 为什么要分清企业类型 */}
+          <DigitalAvatarPlayer
+            videoUrl="https://ddcz-1315997005.cos.ap-nanjing.myqcloud.com/static/video/web_teach/recuYIOstJzpFH.mov"
+            position={{ top: 100, right: '-16rem' }}
+          />
         </motion.section>
 
         {/* 第三部分：关于岗位你该知道的是 */}
@@ -880,6 +899,12 @@ const HomePage: React.FC = () => {
               </div>
             </div>
           </motion.div>
+
+          {/* 数字人播放器4 - 关于岗位你该知道的是 */}
+          <DigitalAvatarPlayer
+            videoUrl="https://ddcz-1315997005.cos.ap-nanjing.myqcloud.com/static/video/web_teach/recuYIOstJt5go.mov"
+            position={{ top: 200, right: '-16rem' }}
+          />
         </motion.section>
 
         {/* 第四部分：通过学习，你能学到什么 */}
@@ -1153,6 +1178,12 @@ const HomePage: React.FC = () => {
               </div>
             </motion.div>
           </div>
+
+          {/* 数字人播放器5 - 通过学习,你能学到什么 */}
+          <DigitalAvatarPlayer
+            videoUrl="https://ddcz-1315997005.cos.ap-nanjing.myqcloud.com/static/video/web_teach/recuYIOstJ5ZuO.mov"
+            position={{ top: 300, right: '-16rem' }}
+          />
         </motion.section>
 
         {/* 第五部分：岗位晋升路径 */}
@@ -1486,6 +1517,12 @@ const HomePage: React.FC = () => {
               </motion.div>
             </div>
           </motion.div>
+
+          {/* 数字人播放器6 - 岗位晋升路径 */}
+          <DigitalAvatarPlayer
+            videoUrl="https://ddcz-1315997005.cos.ap-nanjing.myqcloud.com/static/video/web_teach/recuYIOstJjPRC.mov"
+            position={{ top: 400, right: '-16rem' }}
+          />
         </motion.section>
 
         {/* 学习路径指引 - 弹簧动画 */}
@@ -1558,6 +1595,12 @@ const HomePage: React.FC = () => {
               </Link>
             </motion.div>
           </motion.div>
+
+          {/* 数字人播放器7 - 学习路径指引 */}
+          <DigitalAvatarPlayer
+            videoUrl="https://ddcz-1315997005.cos.ap-nanjing.myqcloud.com/static/video/web_teach/recuYIOstJhiMj.mov"
+            position={{ bottom: 50, right: '-16rem' }}
+          />
         </motion.div>
               </div>
             </div>

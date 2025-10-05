@@ -8,7 +8,12 @@
       "Bash(rm:*)",
       "Bash(git init:*)",
       "Bash(git remote add:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run deploy:*)",
+      "Read(//Users/apple/Documents/cursor/Web课件/文旅/垂直能力提升二：商业活动策划/**)"
     ],
     "deny": [],
     "ask": []
