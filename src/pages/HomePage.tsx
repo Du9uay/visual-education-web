@@ -181,7 +181,7 @@ const HomePage: React.FC = () => {
 
         {/* 新增大标题：为什么要学习这节课 */}
         <motion.section
-          className="mb-16 text-center"
+          className="mb-16 text-center relative"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -222,7 +222,7 @@ const HomePage: React.FC = () => {
 
         {/* 第一部分：为什么要关注行业 */}
         <motion.section
-          className="mb-20"
+          className="mb-20 relative"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -414,7 +414,7 @@ const HomePage: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mb-20"
+          className="mb-20 relative"
         >
           {/* 章节标题 */}
           <motion.div
@@ -669,7 +669,7 @@ const HomePage: React.FC = () => {
 
         {/* 第三部分：关于岗位你该知道的是 */}
         <motion.section
-          className="mb-20"
+          className="mb-20 relative"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -909,7 +909,7 @@ const HomePage: React.FC = () => {
 
         {/* 第四部分：通过学习，你能学到什么 */}
         <motion.section
-          className="mb-20"
+          className="mb-20 relative"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -1177,13 +1177,13 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
             </motion.div>
-
-            {/* 数字人播放器6 - AI工具教学 */}
-            <DigitalAvatarPlayer
-              videoUrl="https://ddcz-1315997005.cos.ap-nanjing.myqcloud.com/static/video/web_teach/recuYIOstJjPRC.mov"
-              position={{ top: 200, right: '-16rem' }}
-            />
           </div>
+
+          {/* 数字人播放器6 - AI工具教学 */}
+          <DigitalAvatarPlayer
+            videoUrl="https://ddcz-1315997005.cos.ap-nanjing.myqcloud.com/static/video/web_teach/recuYIOstJjPRC.mov"
+            position={{ top: 200, right: '-16rem' }}
+          />
 
           {/* 数字人播放器5 - 通过学习,你能学到什么 */}
           <DigitalAvatarPlayer
@@ -1248,7 +1248,7 @@ const HomePage: React.FC = () => {
 
         {/* 职业发展前景 */}
         <motion.section
-          className="mb-20"
+          className="mb-20 relative"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
