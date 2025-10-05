@@ -1177,6 +1177,12 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
             </motion.div>
+
+            {/* 数字人播放器6 - AI工具教学 */}
+            <DigitalAvatarPlayer
+              videoUrl="https://ddcz-1315997005.cos.ap-nanjing.myqcloud.com/static/video/web_teach/recuYIOstJjPRC.mov"
+              position={{ top: 200, right: '-16rem' }}
+            />
           </div>
 
           {/* 数字人播放器5 - 通过学习,你能学到什么 */}
@@ -1518,10 +1524,10 @@ const HomePage: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* 数字人播放器6 - 岗位晋升路径 */}
+          {/* 数字人播放器7 - 职业发展前景 */}
           <DigitalAvatarPlayer
-            videoUrl="https://ddcz-1315997005.cos.ap-nanjing.myqcloud.com/static/video/web_teach/recuYIOstJjPRC.mov"
-            position={{ top: 400, right: '-16rem' }}
+            videoUrl="https://ddcz-1315997005.cos.ap-nanjing.myqcloud.com/static/video/web_teach/recuYIOstJhiMj.mov"
+            position={{ top: 100, right: '-16rem' }}
           />
         </motion.section>
 
@@ -1595,12 +1601,6 @@ const HomePage: React.FC = () => {
               </Link>
             </motion.div>
           </motion.div>
-
-          {/* 数字人播放器7 - 学习路径指引 */}
-          <DigitalAvatarPlayer
-            videoUrl="https://ddcz-1315997005.cos.ap-nanjing.myqcloud.com/static/video/web_teach/recuYIOstJhiMj.mov"
-            position={{ bottom: 50, right: '-16rem' }}
-          />
         </motion.div>
               </div>
             </div>
