@@ -1182,7 +1182,7 @@ const HomePage: React.FC = () => {
           {/* 数字人播放器6 - AI工具教学 */}
           <DigitalAvatarPlayer
             videoUrl="https://ddcz-1315997005.cos.ap-nanjing.myqcloud.com/static/video/web_teach/recuYIOstJjPRC.mov"
-            position={{ top: 200, right: '-16rem' }}
+            position={{ top: 1000, right: '-16rem' }}
           />
 
           {/* 数字人播放器5 - 通过学习,你能学到什么 */}
