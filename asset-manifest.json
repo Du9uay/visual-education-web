@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/visual-education-web/static/css/main.18344bf7.css",
-    "main.js": "/visual-education-web/static/js/main.59ce8c15.js",
+    "main.css": "/visual-education-web/static/css/main.cccd1c22.css",
+    "main.js": "/visual-education-web/static/js/main.6dd12d15.js",
     "index.html": "/visual-education-web/index.html",
-    "main.18344bf7.css.map": "/visual-education-web/static/css/main.18344bf7.css.map",
-    "main.59ce8c15.js.map": "/visual-education-web/static/js/main.59ce8c15.js.map"
+    "main.cccd1c22.css.map": "/visual-education-web/static/css/main.cccd1c22.css.map",
+    "main.6dd12d15.js.map": "/visual-education-web/static/js/main.6dd12d15.js.map"
   },
   "entrypoints": [
-    "static/css/main.18344bf7.css",
-    "static/js/main.59ce8c15.js"
+    "static/css/main.cccd1c22.css",
+    "static/js/main.6dd12d15.js"
   ]
 }
