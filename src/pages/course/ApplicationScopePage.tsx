@@ -224,7 +224,7 @@ const ApplicationScopePage: React.FC = () => {
           <div 
             className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl text-center p-12 relative overflow-hidden"
             style={{
-              backgroundImage: `url("/images/backgrounds/${encodeURIComponent('背景图_二、机器视觉的应用范围.png')}")`,
+              backgroundImage: `url("${process.env.PUBLIC_URL}/images/backgrounds/${encodeURIComponent('背景图_二、机器视觉的应用范围.png')}")`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'

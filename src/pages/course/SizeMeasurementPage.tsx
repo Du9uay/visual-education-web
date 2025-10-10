@@ -226,7 +226,7 @@ const SizeMeasurementPage: React.FC = () => {
           <div 
             className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl text-center p-12 relative overflow-hidden"
             style={{
-              backgroundImage: `url("/images/backgrounds/${encodeURIComponent('背景图_五、机器视觉在尺寸测量中的应用.png')}")`,
+              backgroundImage: `url("${process.env.PUBLIC_URL}/images/backgrounds/${encodeURIComponent('背景图_五、机器视觉在尺寸测量中的应用.png')}")`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -460,7 +460,7 @@ const SizeMeasurementPage: React.FC = () => {
             <motion.div 
               className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 mb-8 relative overflow-hidden shadow-2xl"
               style={{
-                backgroundImage: `url("/images/backgrounds/${encodeURIComponent('示例图_五、机器视觉在尺寸测量中的应用_（三）实践应用与案例分析.png')}")`,
+                backgroundImage: `url("${process.env.PUBLIC_URL}/images/backgrounds/${encodeURIComponent('示例图_五、机器视觉在尺寸测量中的应用_（三）实践应用与案例分析.png')}")`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center right',
                 backgroundRepeat: 'no-repeat'

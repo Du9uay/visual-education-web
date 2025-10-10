@@ -13,7 +13,10 @@
       "Bash(git push:*)",
       "Bash(npm install:*)",
       "Bash(npm run deploy:*)",
-      "Read(//Users/apple/Documents/cursor/Web课件/文旅/垂直能力提升二：商业活动策划/**)"
+      "Read(//Users/apple/Documents/cursor/Web课件/文旅/垂直能力提升二：商业活动策划/**)",
+      "Bash(for file in ApplicationScopePage.tsx AssemblyApplicationPage.tsx DefectDetectionPage.tsx SizeMeasurementPage.tsx SystemComponentsPage.tsx)",
+      "Bash(do)",
+      "Bash(done)"
     ],
     "deny": [],
     "ask": []

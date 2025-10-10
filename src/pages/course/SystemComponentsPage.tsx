@@ -230,7 +230,7 @@ const SystemComponentsPage: React.FC = () => {
           <div 
             className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl text-center p-12 relative overflow-hidden"
             style={{
-              backgroundImage: `url("/images/backgrounds/${encodeURIComponent('背景图_三、机器视觉系统主要组成.png')}")`,
+              backgroundImage: `url("${process.env.PUBLIC_URL}/images/backgrounds/${encodeURIComponent('背景图_三、机器视觉系统主要组成.png')}")`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -463,7 +463,7 @@ const SystemComponentsPage: React.FC = () => {
           <motion.div 
             className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 mb-8 relative overflow-hidden shadow-2xl"
             style={{
-              backgroundImage: `url("/images/backgrounds/${encodeURIComponent('示例图_三、机器视觉系统主要组成_（三）实践应用与案例分析_汽车行业.png')}")`,
+              backgroundImage: `url("${process.env.PUBLIC_URL}/images/backgrounds/${encodeURIComponent('示例图_三、机器视觉系统主要组成_（三）实践应用与案例分析_汽车行业.png')}")`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -519,7 +519,7 @@ const SystemComponentsPage: React.FC = () => {
                   key={index}
                   className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/20 relative overflow-hidden shadow-xl"
                   style={{
-                    backgroundImage: `url("/images/backgrounds/${encodeURIComponent(caseItem.backgroundImage)}")`,
+                    backgroundImage: `url("${process.env.PUBLIC_URL}/images/backgrounds/${encodeURIComponent(caseItem.backgroundImage)}")`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat'

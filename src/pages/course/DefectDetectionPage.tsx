@@ -274,7 +274,7 @@ const DefectDetectionPage: React.FC = () => {
           <div 
             className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl text-center p-12 relative overflow-hidden"
             style={{
-              backgroundImage: `url("/images/backgrounds/${encodeURIComponent('背景图_六、机器视觉在缺陷识别中的应用.png')}")`,
+              backgroundImage: `url("${process.env.PUBLIC_URL}/images/backgrounds/${encodeURIComponent('背景图_六、机器视觉在缺陷识别中的应用.png')}")`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -571,7 +571,7 @@ const DefectDetectionPage: React.FC = () => {
             <motion.div 
               className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 mb-8 relative overflow-hidden shadow-2xl"
               style={{
-                backgroundImage: `url("/images/backgrounds/${encodeURIComponent('示例图_六、机器视觉在缺陷识别中的应用_（三）实践应用与案例分析.png')}")`,
+                backgroundImage: `url("${process.env.PUBLIC_URL}/images/backgrounds/${encodeURIComponent('示例图_六、机器视觉在缺陷识别中的应用_（三）实践应用与案例分析.png')}")`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center left',
                 backgroundRepeat: 'no-repeat'
@@ -777,10 +777,10 @@ const DefectDetectionPage: React.FC = () => {
             whileTap={{ scale: 0.95 }}
           >
             <Link
-              to="/course-summary"
+              to="/course-test"
               className="flex items-center px-6 py-3 bg-gradient-to-r from-red-600 to-pink-600 rounded-lg text-white font-semibold hover:from-red-700 hover:to-pink-700 transition-all duration-300"
             >
-              <span>课程总结</span>
+              <span>课堂测试</span>
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>
           </motion.div>
