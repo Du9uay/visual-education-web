@@ -298,11 +298,11 @@ const CourseTestPage: React.FC = () => {
         {/* 导航链接 */}
         <div className="mt-16 flex justify-between items-center">
           <Link
-            to="/course-summary"
+            to="/course/defect-detection"
             className="flex items-center space-x-2 px-6 py-3 bg-white/10 backdrop-blur-md rounded-xl text-white hover:bg-white/20 transition-all duration-300 border border-white/20"
               >
             <Target className="w-5 h-5" />
-            <span>返回：课程总结</span>
+            <span>返回：缺陷检测</span>
           </Link>
 
           <Link
